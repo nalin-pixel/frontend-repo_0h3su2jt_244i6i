@@ -1,28 +1,37 @@
-import { useState } from 'react'
+import React from 'react';
+import { motion } from 'framer-motion';
+import Hero from './components/Hero';
+import About from './components/About';
+import Experience from './components/Experience';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="min-h-screen w-full bg-[#0B1020] font-[Inter] text-slate-100">
+      {/* Simple sticky nav */}
+      <header className="sticky top-0 z-50 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+          <a href="#home" className="text-sm font-semibold tracking-wide text-cyan-300">NGK</a>
+          <nav className="hidden gap-6 text-sm text-slate-300 sm:flex">
+            <a href="#about" className="hover:text-cyan-300">About</a>
+            <a href="#experience" className="hover:text-cyan-300">Experience</a>
+            <a href="#projects" className="hover:text-cyan-300">Projects</a>
+            <a href="#contact" className="hover:text-cyan-300">Contact</a>
+          </nav>
         </div>
-      </div>
-    </div>
-  )
-}
+        <motion.div layoutId="progress" className="h-px w-full bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
+      </header>
 
-export default App
+      <main>
+        <Hero />
+        <About />
+        <Experience />
+        <Projects />
+        <Contact />
+      </main>
+    </div>
+  );
+};
+
+export default App;
