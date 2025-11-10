@@ -1,19 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Spline from '@splinetool/react-spline';
 import { Github, Linkedin, Rocket } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-[90vh] w-full overflow-hidden bg-gradient-to-b from-[#0B1020] via-[#0B132B] to-[#0B1020] text-slate-100">
-      {/* Spline 3D background */}
-      <div className="absolute inset-0">
-        <Spline scene="https://prod.spline.design/VJLoxp84lCdVfdZu/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+    <section id="home" className="relative min-h-[90vh] w-full overflow-hidden bg-[#070A16] text-slate-100">
+      {/* Animated gradient backdrop (no Spline) */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -inset-[20%] animate-[spin_30s_linear_infinite] rounded-full bg-[conic-gradient(from_0deg,rgba(14,165,233,0.08),rgba(6,182,212,0.16),rgba(99,102,241,0.12),rgba(14,165,233,0.08))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_30%,rgba(14,165,233,0.18),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(40%_40%_at_80%_10%,rgba(99,102,241,0.12),transparent_60%)]" />
+        <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: "url('data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'1000\\' height=\\'1000\\'><defs><filter id=\\'n\\'><feTurbulence type=\\'fractalNoise\\' baseFrequency=\\'0.8\\' numOctaves=\\'4\\' stitchTiles=\\'stitch\\'/></filter></defs><rect width=\\'100%\\' height=\\'100%\\' filter=\\'url(%23n)\\' opacity=\\'0.5\\'/></svg>')" }} />
       </div>
-
-      {/* Subtle gradient/mesh overlays */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_40%,rgba(0,174,255,0.20),transparent_60%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(40%_40%_at_80%_20%,rgba(99,102,241,0.15),transparent_60%)]" />
 
       <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-center px-6 pt-28 text-center">
         <motion.div

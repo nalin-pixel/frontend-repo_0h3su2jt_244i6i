@@ -1,46 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import {
-  FunctionSquare,
-  ServerCog,
-  Atom,
-  Flame,
-  Boxes,
-  Cloud,
-  Search,
-  Brain,
-  Bot,
-  Database,
-  Link2
-} from 'lucide-react';
 
-const skillLogos = [
-  { name: 'Python', Icon: FunctionSquare, colors: 'from-amber-300 to-orange-500' },
-  { name: 'FastAPI', Icon: ServerCog, colors: 'from-emerald-300 to-teal-500' },
-  { name: 'React', Icon: Atom, colors: 'from-cyan-300 to-sky-500' },
-  { name: 'PyTorch', Icon: Flame, colors: 'from-rose-300 to-orange-500' },
-  { name: 'TensorFlow', Icon: Boxes, colors: 'from-yellow-300 to-amber-500' },
-  { name: 'LangChain', Icon: Link2, colors: 'from-teal-300 to-cyan-500' },
-  { name: 'Docker', Icon: Boxes, colors: 'from-blue-300 to-indigo-500' },
-  { name: 'AWS', Icon: Cloud, colors: 'from-orange-300 to-yellow-500' },
-  { name: 'Vector Search', Icon: Search, colors: 'from-fuchsia-300 to-violet-500' },
-  { name: 'LLMs', Icon: Brain, colors: 'from-lime-300 to-emerald-500' },
+const skills = [
+  'Python', 'FastAPI', 'React', 'Node.js', 'TypeScript', 'PyTorch', 'TensorFlow', 'LangChain', 'PostgreSQL', 'MongoDB', 'Docker', 'AWS', 'GCP', 'LLMs', 'Vector Search', 'RAG', 'Git', 'CI/CD'
 ];
-
-const LogoBadge = ({ Icon, label, colors }) => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
-    whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-    viewport={{ once: true }}
-    transition={{ type: 'spring', stiffness: 140 }}
-    className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2"
-  >
-    <div className={`grid h-10 w-10 place-items-center rounded-lg bg-gradient-to-br ${colors} shadow-[0_0_30px_rgba(34,211,238,0.15)]`}> 
-      <Icon className="text-slate-900" size={18} />
-    </div>
-    <span className="text-sm text-slate-200">{label}</span>
-  </motion.div>
-);
 
 const About = () => {
   return (
@@ -68,15 +31,18 @@ const About = () => {
           (2024–2025) and previously completed a B.E. in Computer Science at NMIT, Bangalore (2018–2022).
         </motion.p>
 
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="rounded-xl border border-white/10 bg-white/5 p-6 shadow-[0_0_40px_rgba(34,211,238,0.08)]"
-          >
-            <h3 className="text-lg font-medium text-slate-100">Education</h3>
+        {/* Simple, non-card layout */}
+        <div className="mt-8 grid gap-10 md:grid-cols-2">
+          <div>
+            <motion.h3
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-lg font-medium text-slate-100"
+            >
+              Education
+            </motion.h3>
             <ul className="mt-3 space-y-2 text-sm text-slate-300">
               <li>
                 <span className="font-semibold text-cyan-300">M.S. Software Engineering</span> – San Jose State
@@ -87,22 +53,29 @@ const About = () => {
                 (2018–2022)
               </li>
             </ul>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="rounded-xl border border-white/10 bg-white/5 p-6"
-          >
-            <h3 className="text-lg font-medium text-slate-100">Skill Logos</h3>
-            <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {skillLogos.map((s) => (
-                <LogoBadge key={s.name} Icon={s.Icon} label={s.name} colors={s.colors} />
+          <div>
+            <motion.h3
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-lg font-medium text-slate-100"
+            >
+              Skills
+            </motion.h3>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {skills.map((s) => (
+                <span
+                  key={s}
+                  className="rounded-full bg-white/5 px-3 py-1 text-xs text-slate-200 ring-1 ring-white/10"
+                >
+                  {s}
+                </span>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
