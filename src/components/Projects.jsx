@@ -8,28 +8,28 @@ const projects = [
     desc: 'LangChain + Transformers + RAG; delivers 90–95% query accuracy.',
     stack: ['LangChain', 'Transformers', 'RAG', 'FastAPI'],
     icon: Cpu,
-    link: '#',
+    link: 'https://github.com/Nags-gk/Taxbot',
   },
   {
     title: 'SnoopTrade (Insider Trading Detection)',
     desc: 'Anomaly detection with PyTorch and PostgreSQL for pattern discovery.',
     stack: ['PyTorch', 'PostgreSQL', 'Python'],
     icon: ShieldCheck,
-    link: '#',
+    link: '',
   },
   {
     title: 'Canvas-Go (Learning Management)',
     desc: 'FastAPI + React + AWS; JWT-secured backend and scalable services.',
     stack: ['FastAPI', 'React', 'AWS', 'JWT'],
     icon: Layers,
-    link: '#',
+    link: '',
   },
   {
     title: 'Quantum ML Research',
     desc: 'Quanvolutional Neural Networks for image classification tasks.',
     stack: ['QML', 'PyTorch', 'NumPy'],
     icon: BookOpen,
-    link: '#',
+    link: '',
   },
 ];
 
@@ -50,41 +50,50 @@ const Projects = () => {
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           {projects.map((p, i) => {
             const Icon = p.icon;
+            const isLink = p.link && p.link.length > 0;
+            const CardTag = isLink ? 'a' : 'div';
+            const cardProps = isLink
+              ? { href: p.link, target: '_blank', rel: 'noreferrer' }
+              : {};
             return (
-              <motion.a
+              <motion.div
                 key={p.title}
-                href={p.link}
-                target="_blank"
-                rel="noreferrer"
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05, duration: 0.6 }}
-                className="group relative block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/10 p-6 shadow-[0_0_40px_rgba(34,211,238,0.08)]"
               >
-                <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ background: 'radial-gradient(60% 80% at 50% 0%, rgba(34,211,238,0.15), transparent 70%)' }} />
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3">
-                    <div className="rounded-lg border border-cyan-400/30 bg-cyan-400/10 p-2 text-cyan-300">
-                      <Icon size={18} />
+                <CardTag
+                  {...cardProps}
+                  className="group block overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/10 p-6 shadow-[0_0_40px_rgba(34,211,238,0.08)]"
+                >
+                  <div
+                    className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    style={{ background: 'radial-gradient(60% 80% at 50% 0%, rgba(34,211,238,0.15), transparent 70%)' }}
+                  />
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-3">
+                      <div className="rounded-lg border border-cyan-400/30 bg-cyan-400/10 p-2 text-cyan-300">
+                        <Icon size={18} />
+                      </div>
+                      <h3 className="text-lg font-semibold text-slate-100">{p.title}</h3>
                     </div>
-                    <h3 className="text-lg font-semibold text-slate-100">{p.title}</h3>
+                    <p className="mt-2 text-sm text-slate-300">{p.desc}</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {p.stack.map((s) => (
+                        <span
+                          key={s}
+                          className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-2.5 py-1 text-[11px] text-cyan-200"
+                        >
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent" />
+                    <p className="mt-3 text-xs text-slate-400">{isLink ? 'Open project →' : 'No public link available'}</p>
                   </div>
-                  <p className="mt-2 text-sm text-slate-300">{p.desc}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {p.stack.map((s) => (
-                      <span
-                        key={s}
-                        className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-2.5 py-1 text-[11px] text-cyan-200"
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent" />
-                  <p className="mt-3 text-xs text-slate-400">Hover to explore — the card subtly glows like a neural net firing.</p>
-                </div>
-              </motion.a>
+                </CardTag>
+              </motion.div>
             );
           })}
         </div>
